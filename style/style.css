@@ -1,0 +1,39 @@
+body {
+  padding: 25px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.bar {
+	position: absolute;
+	bottom: 0;
+	background-color: green;
+	display: inline-block;
+}
+
+.control {
+	display: inline-block;
+}
+
+#status {
+	width:100px;
+}
+
+#visualization {
+	min-height: 400px;
+	height: 400px;
+	width: 100%;
+	border: 1px solid black;
+	position: relative;
+}
+
+#canvas {
+	border: 1px solid black;
+}
+
+#trackUri {
+	width: 300px;
+}
