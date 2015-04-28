@@ -24,6 +24,7 @@ $(document).ready(function () {
 
 			// Update track artist and title information
 			$('#track_title').text(track.title);
+			$('#track_artist').text(track.user.username + ' - ');
 
 			// Update logo link to track page
 			$('#sc_logo_anchor').attr('href', track.permalink_url);
