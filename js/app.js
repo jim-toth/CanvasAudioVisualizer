@@ -1,9 +1,5 @@
-var cav = new CanvasAudioVisualizer('audio');
-var canvas = document.getElementById('canvas');
-var canvasContext = canvasElement.getContext('2d');
+document.addEventListener("DOMContentLoaded", function(event) {
+	var cav = new CanvasAudioVisualizer('audioElement');
 
-var draw = function () {
-	requestAnimationFrame(draw);
-};
-
-cav.playStream();
+	cav.play('js/nitewine.mp3');
+});
