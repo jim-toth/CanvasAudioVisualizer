@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": "/",
+			"name": "Canvas Audio Visualizer",
+			"file_exclude_patterns": ["*.mp3", "*.sublime-workspace", "*.jpg"]
+		}
+	]
+}
