@@ -49,5 +49,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 	});
 
-	cav.play('js/nitewine.mp3');
+	// Wire up some crude UI interaction
+	window.play = function () {
+		cav.play('js/nitewine.mp3');
+	};
+	window.stop = function () {
+		cav.pause();
+	};
 });
