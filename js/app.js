@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+	var bgImage = new Image();
+	bgImage.src = 'js/clipclop.jpg';
 	var barMin = 0;
 	var centerOffset = 0;
 	var minAngle = 90;
@@ -11,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			// reset canvas
 			canvasContext.fillStyle = 'white';
 			canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+			// if image is ready, update canvas to image size
+			if(bgImage.complete) {
+				canvas.width = bgImage.width;
+				canvas.height = bgImage.height;
+
+				canvasContext.drawImage(bgImage,0,0);
+			}
 
 			// set up to draw bars
 			var numBars = this.fftSize / 2;
