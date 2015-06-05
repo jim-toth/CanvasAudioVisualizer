@@ -49,9 +49,21 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
 	self.streamData = new Uint8Array(analyser.fftSize/2);
 
 	// Define play function to begin playback, animation loop, and analysis
+	var started = false;
 	self.play = function (streamUri) {
 		player.setAttribute('src', streamUri);
-		player.play();
-		draw();
+		player.addEventListener('loadedmetadata', function () {
+			player.play();
+		}, false);
+		//player.play();
+		if(!started) {
+			draw();
+			started = true;
+		}
+	};
+
+	// Define pause function to pause audio playback
+	self.pause = function () {
+		player.pause();
 	};
 };
