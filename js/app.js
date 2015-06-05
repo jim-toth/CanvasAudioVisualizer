@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var maxAngle = 180;
 	var barWidth = 3;
 
-	SC.get('/resolve', { url: 'https://soundcloud.com/y2k2y/nitewine', client_id: '8320c8fe21f98b89ad50068014b92068' }, function(track, err) {
+	//SC.get('/resolve', { url: 'https://soundcloud.com/trapmusic/king-henrys-hustle-by-raf-riley', client_id: '8320c8fe21f98b89ad50068014b92068' }, function(track, err) {
 		var cav = new CanvasAudioVisualizer('audioElement', 'canvasElement', {
 			fftSize: 512,
 			animateFn: function (canvas, canvasContext, streamData) {
@@ -52,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 		// UI play function
 		window.play = function () {
-			//cav.play('js/nitewine.mp3');
-			cav.play(track.stream_url+'?client_id=8320c8fe21f98b89ad50068014b92068');
+			cav.play('js/nitewine.mp3');
+			//cav.play(track.stream_url+'?client_id=8320c8fe21f98b89ad50068014b92068');
 		};
 		// UI stop function
 		window.stop = function () {
 			cav.pause();
 		};
-	});
+	//});
 });

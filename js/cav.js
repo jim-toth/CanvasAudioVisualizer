@@ -52,7 +52,10 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
 	var started = false;
 	self.play = function (streamUri) {
 		player.setAttribute('src', streamUri);
-		player.play();
+		player.addEventListener('loadedmetadata', function () {
+			player.play();
+		}, false);
+		//player.play();
 		if(!started) {
 			draw();
 			started = true;
