@@ -27,6 +27,9 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
     // Wire the audio source => analyser => destination (speakers)
     source.connect(analyser);
     analyser.connect(audioContext.destination);
+		
+	// Initialize stream data
+	self.streamData = new Uint8Array(analyser.fftSize/2);
   };
 
 	// Simple function to grab the current FFT data from the audio
@@ -47,9 +50,6 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
 			options.animateFn(canvas, canvasContext, self.streamData);
 		}
 	};
-
-	// Initialize stream data
-	self.streamData = new Uint8Array(analyser.fftSize/2);
 
 	// Define play function to begin playback, animation loop, and analysis
 	var started = false;
