@@ -11,11 +11,11 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
   
 	var initAudio = function () {
     // Grab the audio context safely
-    var audioContext = new (window.AudioContext || window.webkitAudioContext);
+    audioContext = new (window.AudioContext || window.webkitAudioContext);
 
     // Grab the audio source and create an analyser
-    var source = audioContext.createMediaElementSource(player);
-    var analyser = audioContext.createAnalyser();
+    source = audioContext.createMediaElementSource(player);
+    analyser = audioContext.createAnalyser();
 
     // Grab and set fftSize override from options if it exists
     if(typeof options != "undefined" && typeof options.fftSize != "undefined") {
