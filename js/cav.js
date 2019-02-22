@@ -1,30 +1,33 @@
 var CanvasAudioVisualizer = function (audio, canvas, options) {
 	var self = this;
+  var audioContext, source, analyser, initialized = false;
 
 	// Grab the audio player element
 	var player = document.getElementById(audio);
-	
-	// Grab the audio context safely
-	var audioContext = new (window.AudioContext || window.webkitAudioContext);
-
-	// Grab the audio source and create an analyser
-	var source = audioContext.createMediaElementSource(player);
-	var analyser = audioContext.createAnalyser();
-
-	// Grab and set fftSize override from options if it exists
-	if(typeof options != "undefined" && typeof options.fftSize != "undefined") {
-		analyser.fftSize = options.fftSize;
-	} else {
-		analyser.fftSize = 512; //default to 512
-	}
-
-	// Wire the audio source => analyser => destination (speakers)
-	source.connect(analyser);
-	analyser.connect(audioContext.destination);
-
-	// Grab the canvas and the canvas context
+  
+  // Grab the canvas and the canvas context
 	var canvas = document.getElementById(canvas);
 	var canvasContext = canvas.getContext('2d');
+  
+	var initAudio = function () {
+    // Grab the audio context safely
+    var audioContext = new (window.AudioContext || window.webkitAudioContext);
+
+    // Grab the audio source and create an analyser
+    var source = audioContext.createMediaElementSource(player);
+    var analyser = audioContext.createAnalyser();
+
+    // Grab and set fftSize override from options if it exists
+    if(typeof options != "undefined" && typeof options.fftSize != "undefined") {
+      analyser.fftSize = options.fftSize;
+    } else {
+      analyser.fftSize = 512; //default to 512
+    }
+
+    // Wire the audio source => analyser => destination (speakers)
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+  };
 
 	// Simple function to grab the current FFT data from the audio
 	var sampleAudio = function () {
@@ -51,6 +54,9 @@ var CanvasAudioVisualizer = function (audio, canvas, options) {
 	// Define play function to begin playback, animation loop, and analysis
 	var started = false;
 	self.play = function (streamUri) {
+    if (!initialized) {
+      initAudio();
+    }
 		player.setAttribute('src', streamUri);
 		player.addEventListener('loadedmetadata', function () {
 			player.play();
